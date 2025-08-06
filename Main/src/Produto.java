@@ -5,7 +5,7 @@ public class Produto {
 	private int codigo;
 	private double preco;
 	private int quantidade;
-	
+
 	public Produto(boolean ativo, int codigo, double preco, int quantidade) {
 		this.ativo = ativo;
 		this.codigo = codigo;
@@ -51,14 +51,12 @@ public class Produto {
 
 	public boolean retirarEstoque(int quantidadeRetirada) {
 		if (quantidadeRetirada > 0 && quantidadeRetirada <= quantidade) {
-		quantidade -= quantidadeRetirada;
-		return true;
-	} else {
-		return false;
-	
-	   }
-		
-      }
- }
+			quantidade -= quantidadeRetirada;
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
 
 
