@@ -49,7 +49,7 @@ public class Produto {
 		return quantidade;
 	}
 
-	public int retirarEstoque(int quantidadeRetirada) {
+	public boolean retirarEstoque(int quantidadeRetirada) {
 		if (quantidadeRetirada > 0 && quantidadeRetirada <= quantidade) {
 		quantidade -= quantidadeRetirada;
 		return true;
@@ -60,4 +60,5 @@ public class Produto {
 		
       }
  }
+
 
