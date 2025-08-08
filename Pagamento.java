@@ -21,7 +21,10 @@ public class Pagamento {
 	 public boolean Vencimento() {
 	        return !Status && LocalDate.now().isAfter(Vencimento);
 	 }
-
+	public void escolherStatusPagamento(String novoStatus) {
+    	setStatusPagamento(novoStatus);
+	}
+	
 	public void FormaPagamento() {
     switch (this.Metodo_Pagamento.toLowerCase()) {
         case "pix":
@@ -65,4 +68,5 @@ public class Pagamento {
 	}
 	
 }
+
 
