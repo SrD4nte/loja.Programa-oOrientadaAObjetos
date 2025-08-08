@@ -23,9 +23,10 @@ public class Cliente {
 		}
     	Pagamento pagamento = new Pagamento(metodo_pagamento, carrinho.valorTotal, LocalDate.now(), true);
     	
-    	System.out.println("-----NOTA FISCAL E CHECKOUT------");
+    	System.out.println("----------NOTA FISCAL E CHECKOUT------------");
     	carrinho.listarProdutos();
     	pagamento.listarInfoPagamento();
+    	System.out.println("--------------------------------------------");
     }
 
     public void adicionar(Estoque estoque, int codigo) { //Adiciona um produto ao carrinho
