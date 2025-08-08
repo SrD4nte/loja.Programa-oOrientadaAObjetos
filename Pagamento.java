@@ -21,6 +21,22 @@ public class Pagamento {
 	 public boolean Vencimento() {
 	        return !Status && LocalDate.now().isAfter(Vencimento);
 	 }
+
+	public void FormaPagamento() {
+    switch (this.Metodo_Pagamento.toLowerCase()) {
+        case "pix":
+            System.out.println("QR Code gerado para pagamento via Pix!");
+            break;
+        case "boleto":
+            System.out.println("Boleto gerado! Pague até a data de vencimento.");
+            break;
+        case "cartão":
+            System.out.println("Pagamento via cartão realizado. Comprovante impresso.");
+            break;
+        default:
+            System.out.println("Método de pagamento não reconhecido.");
+    }
+}
 	
 	// Metodos Getters e Setters
 	public String getMetodo_Pagamento() {
@@ -49,3 +65,4 @@ public class Pagamento {
 	}
 	
 }
+
