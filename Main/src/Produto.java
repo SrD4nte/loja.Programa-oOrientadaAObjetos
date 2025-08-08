@@ -1,16 +1,16 @@
-package Projeto1;
-
 public class Produto {
 	private boolean ativo;
-	private int codigo;
+	private int id;
 	private double preco;
 	private int quantidade;
-
-	public Produto(boolean ativo, int codigo, double preco, int quantidade) {
+	private String nome;
+	
+	public Produto(boolean ativo, int codigo, String nome, double preco, int quantidade) {
 		this.ativo = ativo;
-		this.codigo = codigo;
+		this.id = codigo;
 		this.preco = preco;
 		this.quantidade = quantidade;
+		this.nome = nome;
 	}
 
 	public boolean isAtivo() {
@@ -21,12 +21,12 @@ public class Produto {
 		this.ativo = ativo;
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getPreco() {
@@ -56,6 +56,14 @@ public class Produto {
 		} else {
 			return false;
 		}
+	}
+
+	String getNome() {
+		return nome;
+	}
+
+	private void setNome(String nome) {
+		this.nome = nome;
 	}
 }
 

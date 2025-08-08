@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public class Pagamento {
@@ -20,6 +21,15 @@ public class Pagamento {
 	        return !Status && LocalDate.now().isAfter(Vencimento);
 	 }
 	
+	 
+	 public void listarInfoPagamento() {
+		 System.out.println("Método de Pagamento: " + getMetodo_Pagamento());
+		 System.out.println("Vencimento: " + getVencimento());
+		 DecimalFormat valor = new DecimalFormat("#.##");
+		 
+		 System.out.println("Valor Total: " + valor.format(getValor_Total()));
+		 
+	 }
 	// Metodos Getters e Setters
 	public String getMetodo_Pagamento() {
 		return Metodo_Pagamento;

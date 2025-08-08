@@ -1,31 +1,30 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Estoque {
     
-    private Map<Integer, Produto> produtos; 
+    public ArrayList<Produto> produtos; 
 
     
     public Estoque() {
-        this.produtos = new HashMap<>();
+        this.produtos = new ArrayList<Produto>();
     }
 
     
     public void adicionarProduto(Produto produto) {
         if (produto.getQuantidade() > 0) {
-            produtos.put(produto.getCodigo(), produto);
+            produtos.add(produto);
         } else {
             System.out.println("Quantidade deve ser maior que zero.");
         }
     }
 
     public void removerProduto(int codigo, int quantidade) {
-        if (produtos.containsKey(codigo)) {
-            Produto produto = produtos.get(codigo);
-            if (produto.verificarEstoque() >= quantidade) {
-                produto.retirarEstoque(quantidade);
-                if (produto.verificarEstoque() == 0) {
-                    produtos.remove(codigo);
+        if (codigo >= produtos.size()) {
+        	Produto produto_removido = produtos.get(codigo);
+            if (produto_removido.verificarEstoque() >= quantidade) {
+            	produto_removido.retirarEstoque(quantidade);
+                if (produto_removido.verificarEstoque() == 0) {
+                    produtos.remove(produto_removido);
                 }
             } else {
                 System.out.println("Quantidade a remover é maior que a quantidade disponível.");
@@ -36,11 +35,8 @@ public class Estoque {
     }
 
     
-    public int verificarQuantidade(int codigo) {
-        if (produtos.containsKey(codigo)) {
-            return produtos.get(codigo).verificarEstoque();
-        }
-        return 0;
+    public void verificarQuantidade(int codigo) {
+    	System.out.println(produtos.get(codigo).verificarEstoque());
     }
 
   
@@ -49,8 +45,8 @@ public class Estoque {
             System.out.println("O estoque está vazio.");
         } else {
             System.out.println("Produtos no estoque:");
-            for (Produto produto : produtos.values()) {
-                System.out.println("Produto: " + produto.getCodigo() + ", Preço: " + produto.getPreco() + ", Quantidade: " + produto.getQuantidade());
+            for (Produto produto : produtos) {
+                System.out.println("Código do Produto: " + produto.getId() + ", Nome do Produto: "+ produto.getNome() + ", Preço: " + produto.getPreco() + ", Quantidade: " + produto.getQuantidade());
             }
         }
     }

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Carrinho {
-	
 	int id;
 	ArrayList<Produto> listaDeProdutos = new ArrayList<Produto>();
 	double valorTotal;
@@ -12,7 +11,7 @@ public class Carrinho {
 	}
 
 	public void adicionarProduto(Produto Produto) {
-		this.listaDeProdutos.add(Produto);
+		listaDeProdutos.add(Produto);
 	}
 
 	public void removerProduto(int id) {
@@ -25,9 +24,7 @@ public class Carrinho {
 		}
 
 		for (Produto produto : listaDeProdutos) {
-			System.out.println("ID: " + Produto.id);
-			System.out.println("Nome: " + Produto.nome);
-
+			System.out.println("ID: " + produto.getId() + " -- Nome: " + produto.getNome() + " -- Preço Unitário: " + produto.getPreco());
 		}
 	}
 }
