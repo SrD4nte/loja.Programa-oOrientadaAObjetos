@@ -25,12 +25,18 @@ public class Pagamento {
     	setStatusPagamento(novoStatus);
 	}
 	
-	 public void processarPagamento(int opcao) {
+	  public void processarPagamento(int opcao) {
 	        switch (opcao) {
-	            case 1 : System.out.println("Gerando boleto no valor de R$ " + Valor_Total + "...");
-	            case 2 : System.out.println("Gerando QR Code para pagamento via Pix...");
-	            case 3 : System.out.println("Gerando comprovante de pagamento...");
-	            case 4 : {
+	            case 1 : 
+	            	System.out.println("Gerando boleto no valor de R$ " + Valor_Total + "...");
+	            	break;
+	            case 2 : 
+	            	System.out.println("Gerando QR Code para pagamento via Pix...");
+	            	break;
+	            case 3 : 
+	            	System.out.println("Gerando comprovante de pagamento...");
+	            	break;
+	            case 4 : 
 	                if (Status) {
 	                    System.out.println("Pagamento já realizado.");
 	                } else if (Vencimento()) {
@@ -38,11 +44,13 @@ public class Pagamento {
 	                } else {
 	                    System.out.println("Pagamento pendente, dentro do prazo.");
 	                }
-	            }
-	            default : System.out.println("Opção inválida!");
+	                break;
+	            default : 
+	            	System.out.println("Opção inválida!");
+	            	break;
 	        }
-	}
-	
+	    }
+
 	// Metodos Getters e Setters
 	public String getMetodo_Pagamento() {
 		return Metodo_Pagamento;
@@ -70,6 +78,7 @@ public class Pagamento {
 	}
 	
 }
+
 
 
 
