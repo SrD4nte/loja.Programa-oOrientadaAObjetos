@@ -10,15 +10,18 @@ public class Pagamento {
 	
 	// Construtor
 	public Pagamento (String Metodo_Pagamento, Double Valor_Total, LocalDate Vencimento, Boolean Status) {
-		this.Metodo_Pagamento = Metodo_Pagamento;
-		this.Valor_Total = Valor_Total;
-		this.Vencimento = Vencimento;
-		this.Status = Status;
+		this.setMetodo_Pagamento(Metodo_Pagamento);
+		this.setValor_Total(Valor_Total);
+		this.setVencimento(Vencimento);
+		this.setStatus(Status);
 	}
+	public Pagamento(String metodoPagamento, Double valorTotal, LocalDate vencimento) {
+        this(metodoPagamento, valorTotal, vencimento, false);
+        }
 	
 	// Metodos especificos da classe
 	 public boolean Vencimento() {
-	        return !Status && LocalDate.now().isAfter(Vencimento);
+	        return !getStatus() && LocalDate.now().isAfter(getVencimento());
 	 }
 	
 	 
@@ -44,7 +47,7 @@ public class Pagamento {
 	            	System.out.println("Gerando comprovante de pagamento...");
 	            	break;
 	            case 4 : 
-	                if (Status) {
+	                if (getStatus()) {
 	                    System.out.println("Pagamento já realizado.");
 	                } else if (Vencimento()) {
 	                    System.out.println("Pagamento pendente e vencido!");
@@ -82,6 +85,10 @@ public class Pagamento {
 	}
 	public void setStatus(Boolean Status) {
 		Status = Status;
+	}
+
+	private void setVencimento(LocalDate vencimento) {
+		Vencimento = vencimento;
 	}
 	
 }

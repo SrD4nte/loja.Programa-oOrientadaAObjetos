@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Estoque {
@@ -18,34 +19,32 @@ public class Estoque {
         }
     }
 
-    public void removerProduto(int codigo, int quantidade) {
-        if (codigo >= produtos.size()) {
-        	Produto produto_removido = produtos.get(codigo);
-            if (produto_removido.verificarEstoque() >= quantidade) {
-            	produto_removido.retirarEstoque(quantidade);
-                if (produto_removido.verificarEstoque() == 0) {
-                    produtos.remove(produto_removido);
-                }
-            } else {
-                System.out.println("Quantidade a remover é maior que a quantidade disponível.");
-            }
-        } else {
-            System.out.println("Produto não encontrado no estoque.");
-        }
-    }
-    public void atualizarProduto(int codigo, double novoPreco, int novaQuantidade) {
-        if (codigo < produtos.size()) {
-            Produto produto = produtos.get(codigo);
-            produto.setPreco(novoPreco);
-            produto.setQuantidade(novaQuantidade);
-            System.out.println("Produto atualizado com sucesso.");
-        } else {
-            System.out.println("Produto não encontrado no estoque.");
-        }
-    }
+    	public void removerProduto(int codigo, int quantidade) {
+    	    for (Produto produto : produtos) {
+    	        if (produto.getId() == codigo) {
+    	            if (produto.getQuantidade() >= quantidade) {
+    	                produto.setQuantidade(produto.getQuantidade() - quantidade);
+    	                if (produto.getQuantidade() == 0) {
+    	                    produtos.remove(produto);
+    	                }
+    	            } else {
+    	                System.out.println("Quantidade a remover é maior que a quantidade disponível.");
+    	            }
+    	            return;
+    	        }
+    	    }
+    	    System.out.println("Produto não encontrado no estoque.");
+    	}
+
     
     public void verificarQuantidade(int codigo) {
-    	System.out.println(produtos.get(codigo).verificarEstoque());
+        for (Produto produto : produtos) {
+            if (produto.getId() == codigo) {
+                System.out.println("Quantidade disponível: " + produto.getQuantidade());
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado no estoque.");
     }
 
   

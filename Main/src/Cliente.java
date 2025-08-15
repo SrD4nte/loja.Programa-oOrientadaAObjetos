@@ -3,12 +3,12 @@ import java.util.*;
 
 public class Cliente {
     private int id;
-    private int cpf;
-    private String endereco;
+    private String cpf;
+    public String endereco;
     public Carrinho carrinho;
     public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
     
-    public Cliente(int cpf, String endereco, Carrinho carrinho) {
+    public Cliente(String cpf, String endereco, Carrinho carrinho) {
         this.setId(listaClientes.size());
         this.setCpf(cpf);
         this.setEndereco(endereco);
@@ -26,7 +26,7 @@ public class Cliente {
     	
     }
     
-    public void atualizarCliente(int cpf, String endereco) {
+    public void atualizarCliente(String cpf, String endereco) {
     	this.setCpf(cpf);
     	this.setEndereco(endereco);
     }
@@ -86,12 +86,12 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	int getCpf() {
+	String getCpf() {
 		return cpf;
 	}
 
-	void setCpf(int cpf) {
-		this.cpf = cpf;
+	void setCpf(String cpf2) {
+		this.cpf = cpf2;
 	}
 
 	int getId() {
