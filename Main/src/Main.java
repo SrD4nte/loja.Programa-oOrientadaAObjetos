@@ -13,7 +13,7 @@ public class Main {
     	//Lista todos os produtos existentes no estoque.
     	estoquePrincipal.listarProdutos();
     	//"Cria" um cliente novo
-    	Cliente pessoa1 = new Cliente(0, 231234331, "Rua Brasil, 123", new Carrinho(0, 0));
+    	Cliente pessoa1 = new Cliente(231234331, "Rua Brasil, 123", new Carrinho(0, 0));
     	
     	//Loga o cliente no sistema.
     	pessoa1.logar();
