@@ -32,6 +32,7 @@ public class Pagamento {
 	 }
 
 	public void processarPagamento(int opcao) {
+		DecimalFormat valor = new DecimalFormat("#.##");
 	        switch (opcao) {
 	            case 1 : 
 	            	System.out.println("Gerando boleto no valor de R$ " + valor.format(getValor_Total()) + "...");
