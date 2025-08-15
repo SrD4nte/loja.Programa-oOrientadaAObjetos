@@ -24,17 +24,7 @@ public class Pagamento {
 	        return !getStatus() && LocalDate.now().isAfter(getVencimento());
 	 }
 	
-	 
-	 public void listarInfoPagamento() {
-		 System.out.println("Método de Pagamento: " + getMetodo_Pagamento());
-		 System.out.println("Vencimento: " + getVencimento());
-		 DecimalFormat valor = new DecimalFormat("#.##");
-		 
-		 System.out.println("Valor Total: " + valor.format(getValor_Total()));
-		 
-	 }
-
-	public void processarPagamento(int opcao) {
+	 public void processarPagamento(int opcao) {
 		DecimalFormat valor = new DecimalFormat("#.##");
 	        switch (opcao) {
 	            case 1 : 
@@ -60,6 +50,15 @@ public class Pagamento {
 	            	break;
 	        }
 	    }
+	
+	 public void listarInfoPagamento() {
+		 System.out.println("Método de Pagamento: " + getMetodo_Pagamento());
+		 System.out.println("Vencimento: " + getVencimento());
+		 DecimalFormat valor = new DecimalFormat("#.##");
+		 
+		 System.out.println("Valor Total: " + valor.format(getValor_Total()));
+		 
+	 }
 	
 	// Metodos Getters e Setters
 	public String getMetodo_Pagamento() {
