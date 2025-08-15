@@ -34,7 +34,10 @@ public class Produto {
 	}
 
 	public void setPreco(double preco) {
-		this.preco = preco;
+		if (preco < 0) {
+        throw new IllegalArgumentException("O preço não pode ser um valor negativo.");
+    }
+    this.preco = preco;
 	}
 
 	public int getQuantidade() {
@@ -45,10 +48,6 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-	public int verificarEstoque() {
-		return getQuantidade();
-	}
-
 	public boolean retirarEstoque(int quantidadeRetirada) {
 		if (quantidadeRetirada > 0 && quantidadeRetirada <= getQuantidade()) {
 			setQuantidade(getQuantidade() - quantidadeRetirada);
@@ -57,6 +56,9 @@ public class Produto {
 			return false;
 		}
 	}
+	public boolean retirarEstoque() {
+        return retirarEstoque(1); //sobrecarga
+    }
 
 	String getNome() {
 		return nome;
@@ -66,5 +68,3 @@ public class Produto {
 		this.nome = nome;
 	}
 }
-
-

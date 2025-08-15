@@ -66,6 +66,9 @@ public class Cliente {
     	getCarrinho().adicionarProduto(estoque.produtos.get(codigo));
     	estoque.produtos.get(codigo).retirarEstoque(1);
     }
+    public void adicionar(Produto produto) { //sobrecarga
+        getCarrinho().adicionarProduto(produto);
+    }
 
 	Carrinho getCarrinho() {
 		return carrinho;
