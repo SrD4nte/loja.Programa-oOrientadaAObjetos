@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class Carrinho {
+	public class Carrinho {
     private int id;
-    private ArrayList<Produto> listaDeProdutos = new ArrayList<Produto>();
+    public ArrayList<Produto> listaDeProdutos = new ArrayList<Produto>();
     private double valorTotal;
 
     //sobrecarga\polimorfismo

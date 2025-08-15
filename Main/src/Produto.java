@@ -6,11 +6,11 @@ public class Produto {
 	private String nome;
 	
 	public Produto(boolean ativo, int codigo, String nome, double preco, int quantidade) {
-		this.ativo = ativo;
-		this.id = codigo;
-		this.preco = preco;
-		this.quantidade = quantidade;
-		this.nome = nome;
+		this.setAtivo(ativo);
+		this.setId(codigo);
+		this.setPreco(preco);
+		this.setQuantidade(quantidade);
+		this.setNome(nome);
 	}
 
 	public boolean isAtivo() {
@@ -46,12 +46,12 @@ public class Produto {
 	}
 
 	public int verificarEstoque() {
-		return quantidade;
+		return getQuantidade();
 	}
 
 	public boolean retirarEstoque(int quantidadeRetirada) {
-		if (quantidadeRetirada > 0 && quantidadeRetirada <= quantidade) {
-			quantidade -= quantidadeRetirada;
+		if (quantidadeRetirada > 0 && quantidadeRetirada <= getQuantidade()) {
+			setQuantidade(getQuantidade() - quantidadeRetirada);
 			return true;
 		} else {
 			return false;

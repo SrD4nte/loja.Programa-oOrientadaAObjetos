@@ -5,7 +5,7 @@ public class Cliente {
     private int id;
     private int cpf;
     private String endereco;
-    private Carrinho carrinho;
+    public Carrinho carrinho;
     public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
     
     public Cliente(int cpf, String endereco, Carrinho carrinho) {

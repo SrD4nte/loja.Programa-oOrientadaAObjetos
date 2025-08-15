@@ -2,33 +2,78 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+    	//Inicializa um Scanner.
+    	Scanner sc = new Scanner(System.in);
     	//Cria o Estoque de Produtos.
     	Estoque estoquePrincipal = new Estoque();
-    	//Adiciona o produto Leite ao estoque
-    	estoquePrincipal.adicionarProduto(new Produto(true, estoquePrincipal.produtos.size(), "Leite", 4.99, 10));
-    	//Adiciona o produto Café ao estoque
-    	estoquePrincipal.adicionarProduto(new Produto(true, estoquePrincipal.produtos.size(), "Café", 9.99, 10));
-    	//Adiciona o produto Arros
-    	estoquePrincipal.adicionarProduto(new Produto(true, estoquePrincipal.produtos.size(), "Arroz", 7.99, 10));
-    	//Lista todos os produtos existentes no estoque.
-    	estoquePrincipal.listarProdutos();
-    	//"Cria" um cliente novo
-    	Cliente pessoa1 = new Cliente(231234331, "Rua Brasil, 123", new Carrinho(0, 0));
-    	
-    	//Loga o cliente no sistema.
-    	pessoa1.logar();
-    	//Adiciona vários produtos ao carrinho do cliente.
-    	pessoa1.adicionar(estoquePrincipal, 0);
-    	pessoa1.adicionar(estoquePrincipal, 0);
-    	pessoa1.adicionar(estoquePrincipal, 0);
-    	pessoa1.adicionar(estoquePrincipal, 1);
-    	pessoa1.adicionar(estoquePrincipal, 2);
-    	pessoa1.adicionar(estoquePrincipal, 2);
-    	
-    	//Lista novamente os produtos do estoque.
-    	estoquePrincipal.listarProdutos();
-    	
-    	//Finaliza a compra utilizando o método Pix.
-    	pessoa1.comprar("Pix");
+
+    	Cliente clienteAtual = null;
+    	int opcao;
+    	do {
+    		System.out.println("Digite sua opção:");
+    		System.out.println("1 - Cadastrar um usuário.");
+    		System.out.println("2 - Adicionar um produto ao estoque.");
+    		System.out.println("3 - Adicionar um produto ao carrinho.");
+    		System.out.println("4 - Finalizar a compra.");
+    		System.out.println("0 - Encerrar o programa.");
+    		
+    		opcao = sc.nextInt();
+
+    		switch(opcao) {
+    			case 1:
+    				System.out.println("Digite o Endereço: ");
+    				String endereco = sc.nextLine();
+    				System.out.println("Digite o CPF: ");
+    				int cpf = sc.nextInt();
+    				clienteAtual = new Cliente(cpf, endereco, new Carrinho(0, 0));
+    				
+    			break;
+    			
+    			case 2:
+    				System.out.println("Digite o nome do produto:");
+    				String nomeProduto = sc.next();
+    				System.out.println("Digite o preço do produto: ");
+    				double precoProduto = sc.nextDouble();
+    				sc.nextLine();
+    				System.out.println("Digite a quantidade disponível de produtos: ");
+    				int qntDisponivel = sc.nextInt();
+    				estoquePrincipal.adicionarProduto(new Produto(true, estoquePrincipal.produtos.size(), nomeProduto, precoProduto, qntDisponivel));
+    				
+    				System.out.println("Produto cadastrado com sucesso! Estoque atual:");
+    				estoquePrincipal.listarProdutos();
+    			break;
+    			
+    			case 3:
+    				if (clienteAtual != null) {
+	    				estoquePrincipal.listarProdutos();
+	    				System.out.println("Escolha um produto disponível no estoque (Pelo código): ");
+	    				int produtoEscolhido = sc.nextInt();
+	    				
+	    				clienteAtual.adicionar(estoquePrincipal, produtoEscolhido);
+	    				System.out.println("Produto adicionado com sucesso!");
+    				} else {
+    					System.out.println("Cadastro não finalizado!");
+    				}
+    			break;
+    			
+    			case 4:
+    				if (clienteAtual == null) {
+    					System.out.println("Cadastro não finalizado!");
+    					break;
+    				}
+    				if (clienteAtual.carrinho.listaDeProdutos.size() <= 0) {
+						System.out.println("Carrinho vazio!");
+						break;
+    				}
+    				
+    				System.out.println("Digite um método de pagamento: ");
+    				String metodoPag = sc.next();
+    				clienteAtual.comprar(metodoPag);
+    			break;
+    				
+    		}
+    	} while (opcao!=0);
+    	sc.close();
     }
 }
+

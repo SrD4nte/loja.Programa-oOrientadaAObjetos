@@ -33,7 +33,16 @@ public class Estoque {
             System.out.println("Produto não encontrado no estoque.");
         }
     }
-
+    public void atualizarProduto(int codigo, double novoPreco, int novaQuantidade) {
+        if (codigo < produtos.size()) {
+            Produto produto = produtos.get(codigo);
+            produto.setPreco(novoPreco);
+            produto.setQuantidade(novaQuantidade);
+            System.out.println("Produto atualizado com sucesso.");
+        } else {
+            System.out.println("Produto não encontrado no estoque.");
+        }
+    }
     
     public void verificarQuantidade(int codigo) {
     	System.out.println(produtos.get(codigo).verificarEstoque());
