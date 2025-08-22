@@ -48,23 +48,33 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 	public int verificarEstoque() {
-		return getQuantidade();	
-	}
-	
+	return getQuantidade();	
+}
 	public boolean retirarEstoque(int quantidadeRetirada) {
+		try {
 		if (quantidadeRetirada > 0 && quantidadeRetirada <= getQuantidade()) {
 			setQuantidade(getQuantidade() - quantidadeRetirada);
 			return true;
 		} else {
+			throw new IllegalArgumentException("Quantidade retirada deve ser maior que 0 e menor ou igual à quantidade em estoque"); 
+		}
+	} catch (IllegalArgumentException e) {
+			System.out.println("erro: " + e.getMessage());
 			return false;
 		}
 	}
-
 	String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    try {
+        if (nome == null) {
+            throw new NullPointerException("O nome não pode ser nulo.");
+        }
+        this.nome = nome;
+    } catch (NullPointerException e) {
+        System.out.println("Erro: " + e.getMessage());
+      }
+  }
 }

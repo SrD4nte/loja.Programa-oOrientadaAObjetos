@@ -7,7 +7,7 @@ public class Pagamento {
 	private Double Valor_Total;
 	private LocalDate Vencimento;
 	private Boolean Status;
-	DecimalFormat valor = new DecimalFormat("#.##");
+	
 	// Construtor
 	public Pagamento (String Metodo_Pagamento, Double Valor_Total, LocalDate Vencimento, Boolean Status) {
 		this.setMetodo_Pagamento(Metodo_Pagamento);
@@ -15,23 +15,18 @@ public class Pagamento {
 		this.setVencimento(Vencimento);
 		this.setStatus(Status);
 	}
+	public Pagamento(String metodoPagamento, Double valorTotal, LocalDate vencimento) {
+        this(metodoPagamento, valorTotal, vencimento, false);
+        }
 	
 	// Metodos especificos da classe
 	 public boolean Vencimento() {
 	        return !getStatus() && LocalDate.now().isAfter(getVencimento());
 	 }
 	
-	 
-	 public void listarInfoPagamento() {
-		 System.out.println("Método de Pagamento: " + getMetodo_Pagamento());
-		 System.out.println("Vencimento: " + getVencimento());
-		 
-		 System.out.println("Valor Total: " + getValor_Total());
-		 
-	 }
-
-	public void processarPagamento(int opcao) {
-		
+	 public void processarPagamento(int opcao) {
+ 		try {
+		DecimalFormat valor = new DecimalFormat("#.##");
 	        switch (opcao) {
 	            case 1 : 
 	            	System.out.println("Gerando boleto no valor de R$ " + valor.format(getValor_Total()) + "...");
@@ -55,7 +50,22 @@ public class Pagamento {
 	            	System.out.println("Opção inválida!");
 	            	break;
 	        }
+		} catch (Exception e) {
+            System.out.println("Ocorreu um erro ao processar o pagamento: " + e.getMessage());
+        }
 	    }
+	
+	 public void listarInfoPagamento() {
+		try {
+		 System.out.println("Método de Pagamento: " + getMetodo_Pagamento());
+		 System.out.println("Vencimento: " + getVencimento());
+		 DecimalFormat valor = new DecimalFormat("#.##");
+		 
+		 System.out.println("Valor Total: " + valor.format(getValor_Total()));
+		 } catch (Exception e) {
+            System.out.println("Erro ao listar informações do pagamento: " + e.getMessage());
+        }
+	 }
 	
 	// Metodos Getters e Setters
 	public String getMetodo_Pagamento() {
@@ -68,12 +78,19 @@ public class Pagamento {
 		return Valor_Total;
 	}
 	public void setValor_Total(Double Valor_Total) {
-		this.Valor_Total = Valor_Total;
+		try {
+			if (Valor_Total < 0) {
+				 throw new IllegalArgumentException("O valor total não pode ser negativo.");
+            }
+		Valor_Total = Valor_Total;
+		} catch (IllegalArgumentException e) {
+            System.out.println("Erro ao definir valor: " + e.getMessage());
+        }
 	}
 	public LocalDate getVencimento() {
 		return Vencimento;
 	}
-	public void setVencimento(String Vencimento) {
+	public void setVencimento(LocalDate Vencimento) {
 		Vencimento = Vencimento;
 	}
 	public Boolean getStatus() {
@@ -82,9 +99,4 @@ public class Pagamento {
 	public void setStatus(Boolean Status) {
 		Status = Status;
 	}
-
-	private void setVencimento(LocalDate vencimento) {
-		Vencimento = vencimento;
-	}
-	
 }
