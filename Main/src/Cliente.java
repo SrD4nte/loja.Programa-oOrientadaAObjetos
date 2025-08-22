@@ -53,10 +53,10 @@ public class Cliente {
     }
 
     public void comprar(String metodo_pagamento) { //Faz o cálculo total no carrinho e "finaliza" a compra
-    	for (Produto produto : getCarrinho().getListaDeProdutos()) {
-			getCarrinho().setValorTotal(getCarrinho().getValorTotal() + produto.getPreco());
-		}
+    	getCarrinho().recalcularTotal();
+    	
     	Pagamento pagamento = new Pagamento(metodo_pagamento, getCarrinho().getValorTotal(), LocalDate.now(), true);
+    	System.out.println("PRECO TOTAL: " + pagamento.getValor_Total());
     	System.out.println("-----NOTA FISCAL E CHECKOUT------");
     	getCarrinho().listarProdutos();
     	pagamento.listarInfoPagamento();

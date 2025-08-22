@@ -47,15 +47,16 @@ public class Estoque {
         System.out.println("Produto não encontrado no estoque.");
     }
 
-  
-    public void listarProdutos() {
+    public boolean listarProdutos() {
         if (produtos.isEmpty()) {
             System.out.println("O estoque está vazio.");
+            return false;
         } else {
             System.out.println("Produtos no estoque:");
             for (Produto produto : produtos) {
                 System.out.println("Código do Produto: " + produto.getId() + ", Nome do Produto: "+ produto.getNome() + ", Preço: " + produto.getPreco() + ", Quantidade: " + produto.getQuantidade());
             }
         }
+        return true;
     }
 }

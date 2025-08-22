@@ -48,8 +48,9 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 	public int verificarEstoque() {
-	return getQuantidade();	
-}
+		return getQuantidade();	
+	}
+	
 	public boolean retirarEstoque(int quantidadeRetirada) {
 		if (quantidadeRetirada > 0 && quantidadeRetirada <= getQuantidade()) {
 			setQuantidade(getQuantidade() - quantidadeRetirada);

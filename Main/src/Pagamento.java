@@ -7,7 +7,7 @@ public class Pagamento {
 	private Double Valor_Total;
 	private LocalDate Vencimento;
 	private Boolean Status;
-	
+	DecimalFormat valor = new DecimalFormat("#.##");
 	// Construtor
 	public Pagamento (String Metodo_Pagamento, Double Valor_Total, LocalDate Vencimento, Boolean Status) {
 		this.setMetodo_Pagamento(Metodo_Pagamento);
@@ -15,9 +15,6 @@ public class Pagamento {
 		this.setVencimento(Vencimento);
 		this.setStatus(Status);
 	}
-	public Pagamento(String metodoPagamento, Double valorTotal, LocalDate vencimento) {
-        this(metodoPagamento, valorTotal, vencimento, false);
-        }
 	
 	// Metodos especificos da classe
 	 public boolean Vencimento() {
@@ -28,14 +25,13 @@ public class Pagamento {
 	 public void listarInfoPagamento() {
 		 System.out.println("Método de Pagamento: " + getMetodo_Pagamento());
 		 System.out.println("Vencimento: " + getVencimento());
-		 DecimalFormat valor = new DecimalFormat("#.##");
 		 
-		 System.out.println("Valor Total: " + valor.format(getValor_Total()));
+		 System.out.println("Valor Total: " + getValor_Total());
 		 
 	 }
 
 	public void processarPagamento(int opcao) {
-		DecimalFormat valor = new DecimalFormat("#.##");
+		
 	        switch (opcao) {
 	            case 1 : 
 	            	System.out.println("Gerando boleto no valor de R$ " + valor.format(getValor_Total()) + "...");
@@ -72,7 +68,7 @@ public class Pagamento {
 		return Valor_Total;
 	}
 	public void setValor_Total(Double Valor_Total) {
-		Valor_Total = Valor_Total;
+		this.Valor_Total = Valor_Total;
 	}
 	public LocalDate getVencimento() {
 		return Vencimento;
