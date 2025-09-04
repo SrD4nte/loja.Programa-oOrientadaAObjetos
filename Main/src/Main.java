@@ -71,7 +71,7 @@ public class Main {
 					break;
 				} catch (InputMismatchException e) {
 					System.out.println("Digite o tipo correto! (Ex: Inteiro, Double). " + e);
-					sc.next();
+					sc.next();S
 					break;
 				}
 
@@ -124,16 +124,20 @@ public class Main {
 					estoquePrincipal.listarProdutos();
 					System.out.println("Digite o código do produto para remover: ");
 					int codRemover = sc.nextInt();
+					if (codRemover < 0 || codRemover > estoquePrincipal.produtos.size()) {
+						System.out.println("ERRO! ID não encontrada no sistema.");
+						break;
+					}
 					System.out.println("Digite a quantidade para remover: ");
 					int qtdRemover = sc.nextInt();
-					estoquePrincipal.removerProduto(codRemover, qtdRemover);
+					estoquePrincipal.produtos.get(codRemover).retirarEstoque(qtdRemover);
 					break;
 				} catch (InputMismatchException e) {
 					System.out.println("Digite um número inteiro! " + e);
 					sc.next();
 					break;
 				}
-
+					
 			case 7: // Lista os produtos no carrinho.
 				if (clienteAtual != null) {
 					clienteAtual.getCarrinho().listarProdutos();
@@ -141,7 +145,7 @@ public class Main {
 					System.out.println("Nenhum cliente logado.");
 				}
 				break;
-
+				
 			case 8:
 				estoquePrincipal.listarProdutos();
 				break;
